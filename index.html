@@ -4,33 +4,243 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Happy Birthday ❤️</title>
+  <title>3D Planet</title>
 
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: Arial, Helvetica, sans-serif;
+      background: radial-gradient(circle at center, #16213e 0%, #060814 60%, #000000 100%);
+      color: white;
+    }
+
+    #globeViz {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .title-box {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      z-index: 10;
+      max-width: 380px;
+      padding: 20px 24px;
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 18px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    .title-box h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      letter-spacing: 0.5px;
+    }
+
+    .title-box p {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.5;
+      color: #d7e3ff;
+    }
+
+    .country-label {
+      position: fixed;
+      pointer-events: none;
+      z-index: 20;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.92);
+      color: #111827;
+      font-weight: bold;
+      font-size: 14px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      transform: translate(-50%, -140%);
+      display: none;
+      white-space: nowrap;
+    }
+
+    .hint {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      padding: 12px 18px;
+      background: rgba(0, 0, 0, 0.42);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      color: #dbeafe;
+      font-size: 14px;
+      backdrop-filter: blur(10px);
+    }
+
+    @media (max-width: 700px) {
+      .title-box {
+        top: 14px;
+        left: 14px;
+        right: 14px;
+        max-width: none;
+        padding: 16px 18px;
+      }
+
+      .title-box h1 {
+        font-size: 23px;
+      }
+
+      .title-box p {
+        font-size: 14px;
+      }
+
+      .hint {
+        width: calc(100% - 28px);
+        text-align: center;
+        font-size: 13px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <main class="card">
-    <p class="small-text">A little birthday surprise for</p>
-
-    <h1>Happy Birthday, My Love ❤️</h1>
-
-    <p class="message">
-      I made this tiny website just for you.  
-      It is simple for now, but I wanted to create something personal,
-      something that lives on the internet, and something that reminds you
-      how special you are to me.
+  <div class="title-box">
+    <h1>Explore Our Planet 🌍</h1>
+    <p>
+      Drag to rotate, scroll to zoom, and hover over a country to reveal its name.
     </p>
+  </div>
 
-    <button id="surpriseButton">Click for a surprise</button>
+  <div id="globeViz"></div>
+  <div id="countryLabel" class="country-label"></div>
 
-    <p id="surpriseMessage" class="hidden">
-      You make my life brighter every day. I hope this year brings you
-      happiness, love, laughter, and everything you deserve. 🎂✨
-    </p>
-  </main>
+  <div class="hint">
+    Drag the globe • Scroll to zoom • Hover over countries
+  </div>
 
-  <div class="hearts"></div>
+  <!-- Globe.gl library -->
+  <script src="https://unpkg.com/globe.gl"></script>
 
-  <script src="script.js"></script>
+  <script>
+    const globeContainer = document.getElementById("globeViz");
+    const countryLabel = document.getElementById("countryLabel");
+
+    let hoveredCountry = null;
+
+    const world = Globe()(globeContainer)
+      .backgroundColor("rgba(0, 0, 0, 0)")
+      .globeImageUrl("https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg")
+      .bumpImageUrl("https://unpkg.com/three-globe/example/img/earth-topology.png")
+      .showAtmosphere(true)
+      .atmosphereColor("#7dd3fc")
+      .atmosphereAltitude(0.18)
+      .polygonAltitude(country => country === hoveredCountry ? 0.035 : 0.01)
+      .polygonCapColor(country => {
+        if (country === hoveredCountry) {
+          return "rgba(255, 215, 0, 0.9)";
+        }
+        return "rgba(70, 130, 180, 0.45)";
+      })
+      .polygonSideColor(() => "rgba(0, 80, 120, 0.25)")
+      .polygonStrokeColor(country => {
+        if (country === hoveredCountry) {
+          return "#ffffff";
+        }
+        return "rgba(255, 255, 255, 0.35)";
+      })
+      .polygonLabel(country => {
+        const name = country.properties.ADMIN || country.properties.name || "Unknown country";
+        return `
+          <div style="
+            padding: 8px 12px;
+            background: rgba(0,0,0,0.75);
+            color: white;
+            border-radius: 8px;
+            font-family: Arial;
+            font-size: 14px;
+          ">
+            <b>${name}</b>
+          </div>
+        `;
+      })
+      .onPolygonHover(country => {
+        hoveredCountry = country || null;
+
+        world
+          .polygonAltitude(d => d === hoveredCountry ? 0.035 : 0.01)
+          .polygonCapColor(d => {
+            if (d === hoveredCountry) {
+              return "rgba(255, 215, 0, 0.9)";
+            }
+            return "rgba(70, 130, 180, 0.45)";
+          })
+          .polygonStrokeColor(d => {
+            if (d === hoveredCountry) {
+              return "#ffffff";
+            }
+            return "rgba(255, 255, 255, 0.35)";
+          });
+
+        if (country) {
+          const name = country.properties.ADMIN || country.properties.name || "Unknown country";
+          countryLabel.textContent = name;
+          countryLabel.style.display = "block";
+          document.body.style.cursor = "pointer";
+        } else {
+          countryLabel.style.display = "none";
+          document.body.style.cursor = "default";
+        }
+      });
+
+    fetch("https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson")
+      .then(response => response.json())
+      .then(countries => {
+        world.polygonsData(countries.features);
+      })
+      .catch(error => {
+        console.error("Could not load country data:", error);
+        alert("Country map data could not load. Make sure you are connected to the internet.");
+      });
+
+    document.addEventListener("mousemove", event => {
+      countryLabel.style.left = event.clientX + "px";
+      countryLabel.style.top = event.clientY + "px";
+    });
+
+    world.pointOfView(
+      {
+        lat: 20,
+        lng: 0,
+        altitude: 2.1
+      },
+      1000
+    );
+
+    const controls = world.controls();
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 0.45;
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.08;
+    controls.minDistance = 180;
+    controls.maxDistance = 650;
+
+    globeContainer.addEventListener("mouseenter", () => {
+      controls.autoRotate = false;
+    });
+
+    globeContainer.addEventListener("mouseleave", () => {
+      controls.autoRotate = true;
+    });
+
+    window.addEventListener("resize", () => {
+      world.width(window.innerWidth);
+      world.height(window.innerHeight);
+    });
+  </script>
 </body>
 </html>

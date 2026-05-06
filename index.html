@@ -3,244 +3,143 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>3D Planet</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      overflow: hidden;
-      font-family: Arial, Helvetica, sans-serif;
-      background: radial-gradient(circle at center, #16213e 0%, #060814 60%, #000000 100%);
-      color: white;
-    }
-
-    #globeViz {
-      width: 100vw;
-      height: 100vh;
-    }
-
-    .title-box {
-      position: fixed;
-      top: 24px;
-      left: 24px;
-      z-index: 10;
-      max-width: 380px;
-      padding: 20px 24px;
-      background: rgba(0, 0, 0, 0.45);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 18px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-    }
-
-    .title-box h1 {
-      margin: 0 0 8px;
-      font-size: 28px;
-      letter-spacing: 0.5px;
-    }
-
-    .title-box p {
-      margin: 0;
-      font-size: 15px;
-      line-height: 1.5;
-      color: #d7e3ff;
-    }
-
-    .country-label {
-      position: fixed;
-      pointer-events: none;
-      z-index: 20;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.92);
-      color: #111827;
-      font-weight: bold;
-      font-size: 14px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-      transform: translate(-50%, -140%);
-      display: none;
-      white-space: nowrap;
-    }
-
-    .hint {
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
-      padding: 12px 18px;
-      background: rgba(0, 0, 0, 0.42);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 999px;
-      color: #dbeafe;
-      font-size: 14px;
-      backdrop-filter: blur(10px);
-    }
-
-    @media (max-width: 700px) {
-      .title-box {
-        top: 14px;
-        left: 14px;
-        right: 14px;
-        max-width: none;
-        padding: 16px 18px;
-      }
-
-      .title-box h1 {
-        font-size: 23px;
-      }
-
-      .title-box p {
-        font-size: 14px;
-      }
-
-      .hint {
-        width: calc(100% - 28px);
-        text-align: center;
-        font-size: 13px;
-      }
-    }
-  </style>
+  <title>Happy 25th Birthday ❤️</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <div class="title-box">
-    <h1>Explore Our Planet 🌍</h1>
-    <p>
-      Drag to rotate, scroll to zoom, and hover over a country to reveal its name.
-    </p>
+  <div class="floating-hearts"></div>
+
+  <header class="hero">
+    <nav>
+      <div class="logo">For Her ❤️</div>
+      <div class="nav-links">
+        <a href="#message">Message</a>
+        <a href="#memories">Memories</a>
+        <a href="#reasons">Reasons</a>
+        <a href="#surprise">Surprise</a>
+      </div>
+    </nav>
+
+    <div class="hero-content">
+      <p class="small-text">A little website for a very special day</p>
+      <h1>Happy 25th Birthday, <span>Your Name Here</span> ❤️</h1>
+      <p class="subtitle">
+        Today is all about celebrating you — your kindness, your smile,
+        your energy, and everything that makes you so special.
+      </p>
+      <a href="#message" class="main-button">Open your birthday message</a>
+    </div>
+  </header>
+
+  <section id="message" class="section message-section">
+    <div class="card big-card">
+      <h2>My Birthday Message to You</h2>
+      <p>
+        Happy 25th birthday, my love. I wanted to make something simple,
+        personal, and made only for you.
+      </p>
+      <p>
+        I hope this year brings you beautiful memories, new adventures,
+        lots of laughter, and everything you deserve. You make life brighter,
+        and I’m so lucky to be part of your story.
+      </p>
+      <p>
+        I hope this little website makes you smile today.
+      </p>
+      <p class="signature">— With love, Xavier</p>
+    </div>
+  </section>
+
+  <section id="memories" class="section">
+    <h2>Some of My Favorite Memories</h2>
+    <p class="section-subtitle">Replace the text and images with your own moments.</p>
+
+    <div class="memory-grid">
+      <div class="memory-card">
+        <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80" alt="Memory 1">
+        <h3>Our First Adventure</h3>
+        <p>Write a small memory here. Something funny, sweet, or meaningful.</p>
+      </div>
+
+      <div class="memory-card">
+        <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=800&q=80" alt="Memory 2">
+        <h3>A Day I’ll Never Forget</h3>
+        <p>Add a moment that always makes you smile when you think about it.</p>
+      </div>
+
+      <div class="memory-card">
+        <img src="https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?auto=format&fit=crop&w=800&q=80" alt="Memory 3">
+        <h3>Simple Little Moments</h3>
+        <p>Sometimes the smallest moments become the best memories.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="reasons" class="section reasons-section">
+    <h2>25 Reasons Why You’re Amazing</h2>
+    <p class="section-subtitle">Because 25 deserves 25 reasons.</p>
+
+    <div class="reasons-container">
+      <button class="reason-button" onclick="showRandomReason()">Show me a reason</button>
+      <p id="reason-text">Click the button ❤️</p>
+    </div>
+  </section>
+
+  <section class="section timeline-section">
+    <h2>A Little Timeline of Us</h2>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="dot"></div>
+        <div>
+          <h3>When We Met</h3>
+          <p>Write something about the first time you met.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="dot"></div>
+        <div>
+          <h3>Our Favorite Moment</h3>
+          <p>Add a memory that means a lot to both of you.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="dot"></div>
+        <div>
+          <h3>Today</h3>
+          <p>Celebrating your 25th birthday and everything still to come.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="surprise" class="section surprise-section">
+    <div class="card surprise-card">
+      <h2>One Last Surprise</h2>
+      <p>Click the button below.</p>
+      <button class="main-button" onclick="openSurprise()">Open Surprise</button>
+    </div>
+  </section>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <button class="close-button" onclick="closeSurprise()">×</button>
+      <h2>Happy Birthday ❤️</h2>
+      <p>
+        You are loved, appreciated, and celebrated today.
+        I hope your 25th year is your most beautiful one yet.
+      </p>
+      <p class="modal-heart">❤️</p>
+    </div>
   </div>
 
-  <div id="globeViz"></div>
-  <div id="countryLabel" class="country-label"></div>
+  <footer>
+    <p>Made with love for your 25th birthday ❤️</p>
+  </footer>
 
-  <div class="hint">
-    Drag the globe • Scroll to zoom • Hover over countries
-  </div>
-
-  <!-- Globe.gl library -->
-  <script src="https://unpkg.com/globe.gl"></script>
-
-  <script>
-    const globeContainer = document.getElementById("globeViz");
-    const countryLabel = document.getElementById("countryLabel");
-
-    let hoveredCountry = null;
-
-    const world = Globe()(globeContainer)
-      .backgroundColor("rgba(0, 0, 0, 0)")
-      .globeImageUrl("https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg")
-      .bumpImageUrl("https://unpkg.com/three-globe/example/img/earth-topology.png")
-      .showAtmosphere(true)
-      .atmosphereColor("#7dd3fc")
-      .atmosphereAltitude(0.18)
-      .polygonAltitude(country => country === hoveredCountry ? 0.035 : 0.01)
-      .polygonCapColor(country => {
-        if (country === hoveredCountry) {
-          return "rgba(255, 215, 0, 0.9)";
-        }
-        return "rgba(70, 130, 180, 0.45)";
-      })
-      .polygonSideColor(() => "rgba(0, 80, 120, 0.25)")
-      .polygonStrokeColor(country => {
-        if (country === hoveredCountry) {
-          return "#ffffff";
-        }
-        return "rgba(255, 255, 255, 0.35)";
-      })
-      .polygonLabel(country => {
-        const name = country.properties.ADMIN || country.properties.name || "Unknown country";
-        return `
-          <div style="
-            padding: 8px 12px;
-            background: rgba(0,0,0,0.75);
-            color: white;
-            border-radius: 8px;
-            font-family: Arial;
-            font-size: 14px;
-          ">
-            <b>${name}</b>
-          </div>
-        `;
-      })
-      .onPolygonHover(country => {
-        hoveredCountry = country || null;
-
-        world
-          .polygonAltitude(d => d === hoveredCountry ? 0.035 : 0.01)
-          .polygonCapColor(d => {
-            if (d === hoveredCountry) {
-              return "rgba(255, 215, 0, 0.9)";
-            }
-            return "rgba(70, 130, 180, 0.45)";
-          })
-          .polygonStrokeColor(d => {
-            if (d === hoveredCountry) {
-              return "#ffffff";
-            }
-            return "rgba(255, 255, 255, 0.35)";
-          });
-
-        if (country) {
-          const name = country.properties.ADMIN || country.properties.name || "Unknown country";
-          countryLabel.textContent = name;
-          countryLabel.style.display = "block";
-          document.body.style.cursor = "pointer";
-        } else {
-          countryLabel.style.display = "none";
-          document.body.style.cursor = "default";
-        }
-      });
-
-    fetch("https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson")
-      .then(response => response.json())
-      .then(countries => {
-        world.polygonsData(countries.features);
-      })
-      .catch(error => {
-        console.error("Could not load country data:", error);
-        alert("Country map data could not load. Make sure you are connected to the internet.");
-      });
-
-    document.addEventListener("mousemove", event => {
-      countryLabel.style.left = event.clientX + "px";
-      countryLabel.style.top = event.clientY + "px";
-    });
-
-    world.pointOfView(
-      {
-        lat: 20,
-        lng: 0,
-        altitude: 2.1
-      },
-      1000
-    );
-
-    const controls = world.controls();
-    controls.autoRotate = true;
-    controls.autoRotateSpeed = 0.45;
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.08;
-    controls.minDistance = 180;
-    controls.maxDistance = 650;
-
-    globeContainer.addEventListener("mouseenter", () => {
-      controls.autoRotate = false;
-    });
-
-    globeContainer.addEventListener("mouseleave", () => {
-      controls.autoRotate = true;
-    });
-
-    window.addEventListener("resize", () => {
-      world.width(window.innerWidth);
-      world.height(window.innerHeight);
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>

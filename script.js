@@ -71,3 +71,39 @@ function launchConfetti() {
     setTimeout(createHeart, i * 60);
   }
 }
+
+
+
+const notReasons = [
+  "None.",
+  "No reasons.",
+  "There are no reasons.",
+  "Il n’y a pas de raison.",
+  "Aucune raison.",
+  "0.",
+  "PAS VRAI.",
+  "YOU’RE AMAZING.",
+  "This list is empty for a reason.",
+  "Impossible to find one.",
+  "Not applicable.",
+  "Error 404: reason not found.",
+  "Nope.",
+  "Still no reason.",
+  "Absolutely zero.",
+  "Nice try.",
+  "This button is broken because there are no reasons.",
+  "False question.",
+  "Denied.",
+  "No evidence found.",
+  "The answer is still none.",
+  "She is amazing. End of discussion.",
+  "Même Google ne trouve rien.",
+  "There are literally no reasons.",
+  "Final answer: you’re amazing ❤️"
+];
+
+function showRandomNotReason() {
+  const notReasonText = document.getElementById("not-reason-text");
+  const randomIndex = Math.floor(Math.random() * notReasons.length);
+  notReasonText.textContent = notReasons[randomIndex];
+}
